@@ -45,19 +45,19 @@ class TestCacheSerializer(unittest.TestCase):
         """Checks that object equality is not sensible to JSON keys commutations"""
         cwd = os.path.dirname(os.path.realpath(__file__))
         with open(
-            os.path.join(cwd, "tests", "fixtures", "json_permut", "1.json"),
+            os.path.join(cwd, "fixtures", "json_permut", "1.json"),
             "r",
             encoding="utf8",
         ) as f:
             cdc_json = f.read()
         with open(
-            os.path.join(cwd, "tests", "fixtures", "json_permut", "2.json"),
+            os.path.join(cwd, "fixtures", "json_permut", "2.json"),
             "r",
             encoding="utf8",
         ) as f:
             commut_cdc_json = f.read()
         with open(
-            os.path.join(cwd, "tests", "fixtures", "json_permut", "not-equal.json"),
+            os.path.join(cwd, "fixtures", "json_permut", "not-equal.json"),
             "r",
             encoding="utf8",
         ) as f:

@@ -17,7 +17,7 @@ pkgs.python3Packages.buildPythonPackage {
   doCheck = true;
 
   checkPhase = ''
-    python nixglhost_test.py
+    python tests/nixglhost_test.py
   '';
 
   meta = {
