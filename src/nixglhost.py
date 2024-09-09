@@ -13,7 +13,7 @@ import sys
 import tempfile
 import time
 from glob import glob
-from typing import List, Literal, Dict, Tuple, TypedDict, TextIO, Optional
+from typing import List, Dict, Optional
 
 IN_NIX_STORE = False
 CACHE_VERSION = 3
@@ -177,62 +177,62 @@ class CacheDirContent:
 # requiring to build/fetch the nvidia driver at runtime*.
 # TODO: compile the regexes
 NVIDIA_DSO_PATTERNS = [
-    "libGLESv1_CM_nvidia\.so.*$",
-    "libGLESv2_nvidia\.so.*$",
-    "libglxserver_nvidia\.so.*$",
-    "libnvcuvid\.so.*$",
-    "libnvidia-allocator\.so.*$",
-    "libnvidia-cfg\.so.*$",
-    "libnvidia-compiler\.so.*$",
-    "libnvidia-eglcore\.so.*$",
-    "libnvidia-encode\.so.*$",
-    "libnvidia-fbc\.so.*$",
-    "libnvidia-glcore\.so.*$",
-    "libnvidia-glsi\.so.*$",
-    "libnvidia-glvkspirv\.so.*$",
-    "libnvidia-gpucomp\.so.*$",
-    "libnvidia-ml\.so.*$",
-    "libnvidia-ngx\.so.*$",
-    "libnvidia-nvvm\.so.*$",
-    "libnvidia-opencl\.so.*$",
-    "libnvidia-opticalflow\.so.*$",
-    "libnvidia-ptxjitcompiler\.so.*$",
-    "libnvidia-rtcore\.so.*$",
-    "libnvidia-tls\.so.*$",
-    "libnvidia-vulkan-producer\.so.*$",
-    "libnvidia-wayland-client\.so.*$",
-    "libnvoptix\.so.*$",
+    r"libGLESv1_CM_nvidia\.so.*$",
+    r"libGLESv2_nvidia\.so.*$",
+    r"libglxserver_nvidia\.so.*$",
+    r"libnvcuvid\.so.*$",
+    r"libnvidia-allocator\.so.*$",
+    r"libnvidia-cfg\.so.*$",
+    r"libnvidia-compiler\.so.*$",
+    r"libnvidia-eglcore\.so.*$",
+    r"libnvidia-encode\.so.*$",
+    r"libnvidia-fbc\.so.*$",
+    r"libnvidia-glcore\.so.*$",
+    r"libnvidia-glsi\.so.*$",
+    r"libnvidia-glvkspirv\.so.*$",
+    r"libnvidia-gpucomp\.so.*$",
+    r"libnvidia-ml\.so.*$",
+    r"libnvidia-ngx\.so.*$",
+    r"libnvidia-nvvm\.so.*$",
+    r"libnvidia-opencl\.so.*$",
+    r"libnvidia-opticalflow\.so.*$",
+    r"libnvidia-ptxjitcompiler\.so.*$",
+    r"libnvidia-rtcore\.so.*$",
+    r"libnvidia-tls\.so.*$",
+    r"libnvidia-vulkan-producer\.so.*$",
+    r"libnvidia-wayland-client\.so.*$",
+    r"libnvoptix\.so.*$",
     # Cannot find that one :(
-    "libnvtegrahv\.so.*$",
+    r"libnvtegrahv\.so.*$",
     # Host dependencies required by the nvidia DSOs to properly
     # operate
     # libdrm
-    "libdrm\.so.*$",
+    r"libdrm\.so.*$",
     # libffi
-    "libffi\.so.*$",
+    r"libffi\.so.*$",
     # libgbm
-    "libgbm\.so.*$",
+    r"libgbm\.so.*$",
     # libexpat
-    "libexpat\.so.*$",
+    r"libexpat\.so.*$",
     # libxcb
-    "libxcb-glx\.so.*$",
+    r"libxcb-glx\.so.*$",
     # Coming from libx11
-    "libX11-xcb\.so.*$",
-    "libX11\.so.*$",
-    "libXext\.so.*$",
+    r"libX11-xcb\.so.*$",
+    r"libX11\.so.*$",
+    r"libXext\.so.*$",
     # libwayland
-    "libwayland-server\.so.*$",
-    "libwayland-client\.so.*$",
+    r"libwayland-server\.so.*$",
+    r"libwayland-client\.so.*$",
 ]
 
-CUDA_DSO_PATTERNS = ["libcudadebugger\.so.*$", "libcuda\.so.*$"]
+CUDA_DSO_PATTERNS = [r"libcudadebugger\.so.*$", r"libcuda\.so.*$"]
 
-GLX_DSO_PATTERNS = ["libGLX_nvidia\.so.*$"]
+GLX_DSO_PATTERNS = [r"libGLX_nvidia\.so.*$"]
 
 EGL_DSO_PATTERNS = [
-    "libEGL_nvidia\.so.*$",
-    "libnvidia-egl-wayland\.so.*$",
-    "libnvidia-egl-gbm\.so.*$",
+    r"libEGL_nvidia\.so.*$",
+    r"libnvidia-egl-wayland\.so.*$",
+    r"libnvidia-egl-gbm\.so.*$",
 ]
 
 

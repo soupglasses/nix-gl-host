@@ -12,8 +12,8 @@ pkgs.stdenvNoCC.mkDerivation {
 
   postFixup = ''
     substituteInPlace $out/bin/nixglhost \
-        --replace "@patchelf-bin@" "${pkgs.patchelf}/bin/patchelf" \
-        --replace "IN_NIX_STORE = False" "IN_NIX_STORE = True"
+        --replace-fail "@patchelf-bin@" "${pkgs.patchelf}/bin/patchelf" \
+        --replace-fail "IN_NIX_STORE = False" "IN_NIX_STORE = True"
     patchShebangs $out/bin/nixglhost
   '';
 
