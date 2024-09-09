@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nixglhost"
+version = "0.1.0"
+description = "Run OpenGL/Cuda programs built with Nix, on all Linux distributions"
+readme = "README.md"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/numtide/nix-gl-host"
+Issues = "https://github.com/numtide/nix-gl-host/issues"
+
+[project.scripts]
+nixglhost = "nixglhost:cli"

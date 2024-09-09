@@ -1,27 +1,30 @@
 { pkgs ? import <nixpkgs> { }, lib ? pkgs.lib }:
 
-pkgs.stdenvNoCC.mkDerivation {
-  pname = "nix-gl-host";
-  version = "0.1";
+pkgs.python3Packages.buildPythonPackage {
+  pname = "nixglhost";
+  version = "0.1.0";
+  pyproject = true;
+  build-system = [ pkgs.hatch ];
+
   src = lib.cleanSource ./.;
-  nativeBuildInputs = [ pkgs.python3 ];
 
-  installPhase = ''
-    install -D -m0755 src/nixglhost.py $out/bin/nixglhost
-  '';
-
-  postFixup = ''
-    substituteInPlace $out/bin/nixglhost \
+  postPatch = ''
+    substituteInPlace nixglhost/main.py \
         --replace-fail "@patchelf-bin@" "${pkgs.patchelf}/bin/patchelf" \
         --replace-fail "IN_NIX_STORE = False" "IN_NIX_STORE = True"
-    patchShebangs $out/bin/nixglhost
   '';
 
   doCheck = true;
 
   checkPhase = ''
-    python src/nixglhost_test.py
+    python nixglhost_test.py
   '';
 
-  meta.mainProgram = "nixglhost";
+  meta = {
+    mainProgram = "nixglhost";
+    description = "Run OpenGL/Cuda programs built with Nix, on all Linux distributions";
+    homepage = "https://github.com/numtide/nix-gl-host";
+    license = lib.licenses.asl20;
+    maintainers = with lib.maintainers; [ picnoir soupglasses ];
+  };
 }

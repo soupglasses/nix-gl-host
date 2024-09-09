@@ -7,6 +7,7 @@ pkgs.mkShellNoCC {
   nativeBuildInputs = with pkgs; [
     nixpkgs-fmt
     editorconfig-checker
+    python3Packages.ipython
     python3Packages.black
     python3Packages.mypy
   ];
