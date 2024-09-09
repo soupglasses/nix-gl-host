@@ -358,7 +358,7 @@ def patch_dsos(dsoPaths: List[str], rpath: str) -> None:
 
 def generate_nvidia_egl_config_files(egl_conf_dir: str) -> None:
     """Generates a set of JSON files describing the EGL exec
-    envirnoment to libglvnd.
+    environment to libglvnd.
 
     These configuration files will point to the EGL, wayland and GBM
     Nvidia DSOs. We're only specifying the DSOs names here to give the
@@ -623,7 +623,7 @@ def main(args):
     log_info(f'Using "{cache_dir}" as cache dir.')
     if args.driver_directory:
         log_info(
-            f"Retreiving DSOs from the specified directory: {args.driver_directory}"
+            f"Retrieving DSOs from the specified directory: {args.driver_directory}"
         )
         host_dsos_paths: List[str] = [args.driver_directory]
     else:
@@ -675,11 +675,11 @@ if __name__ == "__main__":
             "ERROR: -p and NIX_BINARY are both set. You have to choose between one of these options.",
             file=sys.stderr,
         )
-        print("       run nixglhost --help for more informations. ", file=sys.stderr)
+        print("       run nixglhost --help for more information. ", file=sys.stderr)
         sys.exit(1)
     elif not args.print_ld_library_path and not args.NIX_BINARY:
         print("ERROR: Please set the NIX_BINARY you want to run.", file=sys.stderr)
-        print("       run nixglhost --help for more informations. ", file=sys.stderr)
+        print("       run nixglhost --help for more information. ", file=sys.stderr)
         sys.exit(1)
     ret = main(args)
     sys.exit(ret)
