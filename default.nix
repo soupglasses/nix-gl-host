@@ -3,14 +3,12 @@
 pkgs.stdenvNoCC.mkDerivation {
   pname = "nix-gl-host";
   version = "0.1";
-  # TODO: filter that out
   src = lib.cleanSource ./.;
-  nativeBuildInputs = [
-    pkgs.nixpkgs-fmt
-    pkgs.python3
-    pkgs.python3Packages.black
-    pkgs.nixpkgs-fmt
-  ];
+  nativeBuildInputs = [ pkgs.python3 ];
+
+  installPhase = ''
+    install -D -m0755 src/nixglhost.py $out/bin/nixglhost
+  '';
 
   postFixup = ''
     substituteInPlace $out/bin/nixglhost \
@@ -22,13 +20,7 @@ pkgs.stdenvNoCC.mkDerivation {
   doCheck = true;
 
   checkPhase = ''
-    black --check src/*.py
-    nixpkgs-fmt --check *.nix
     python src/nixglhost_test.py
-  '';
-
-  installPhase = ''
-    install -D -m0755 src/nixglhost.py $out/bin/nixglhost
   '';
 
   meta.mainProgram = "nixglhost";

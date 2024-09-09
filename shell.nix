@@ -1,9 +1,13 @@
 { pkgs ? import <nixpkgs> { } }:
 
-pkgs.mkShell {
-  nativeBuildInputs = [
-    pkgs.nixpkgs-fmt
-    pkgs.python3Packages.black
-    pkgs.python3Packages.mypy
+pkgs.mkShellNoCC {
+  shellHook = ''
+    ${pkgs.pre-commit}/bin/pre-commit install --install-hooks --overwrite
+  '';
+  nativeBuildInputs = with pkgs; [
+    nixpkgs-fmt
+    editorconfig-checker
+    python3Packages.black
+    python3Packages.mypy
   ];
 }
